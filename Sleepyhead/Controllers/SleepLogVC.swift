@@ -10,5 +10,11 @@ import UIKit
 
 class SleepLogVC: UITableViewController {
     
+    private  var entries = [Entry]()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        entries = EntriesFactory.makeEntries(numberOfDays: 2)
+        printEntries(entries)
+    }
 }
 

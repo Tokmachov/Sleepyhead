@@ -16,6 +16,7 @@
 		0419F6082441EC1400DD5620 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0419F6062441EC1400DD5620 /* LaunchScreen.storyboard */; };
 		0419F6142441F20F00DD5620 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F6132441F20F00DD5620 /* Entry.swift */; };
 		0419F616244201DD00DD5620 /* EntriesSimulationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F615244201DD00DD5620 /* EntriesSimulationFactory.swift */; };
+		0419F619244370EF00DD5620 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F618244370EF00DD5620 /* GlobalFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		0419F6092441EC1400DD5620 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0419F6132441F20F00DD5620 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		0419F615244201DD00DD5620 /* EntriesSimulationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesSimulationFactory.swift; sourceTree = "<group>"; };
+		0419F618244370EF00DD5620 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		0419F5F72441EC1300DD5620 /* Sleepyhead */ = {
 			isa = PBXGroup;
 			children = (
+				0419F617244370D500DD5620 /* Global functions */,
 				0419F6122441F1CC00DD5620 /* Model */,
 				0419F60F2441F11900DD5620 /* Controllers */,
 				0419F6102441F13C00DD5620 /* Views */,
@@ -106,6 +109,14 @@
 				0419F615244201DD00DD5620 /* EntriesSimulationFactory.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0419F617244370D500DD5620 /* Global functions */ = {
+			isa = PBXGroup;
+			children = (
+				0419F618244370EF00DD5620 /* GlobalFunctions.swift */,
+			);
+			path = "Global functions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +192,7 @@
 			files = (
 				0419F6142441F20F00DD5620 /* Entry.swift in Sources */,
 				0419F5FD2441EC1300DD5620 /* SleepLogVC.swift in Sources */,
+				0419F619244370EF00DD5620 /* GlobalFunctions.swift in Sources */,
 				0419F5F92441EC1300DD5620 /* AppDelegate.swift in Sources */,
 				0419F5FB2441EC1300DD5620 /* SceneDelegate.swift in Sources */,
 				0419F616244201DD00DD5620 /* EntriesSimulationFactory.swift in Sources */,

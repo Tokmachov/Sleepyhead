@@ -9,18 +9,14 @@
 import Foundation
 
 struct Entry {
-    let startTime: Date
-    let endTime: Date?
-    var isInProcess: Bool
+    let startDate: Date
+    var endEndDate: Date?
     let type: EntryType
     var duration: TimeInterval? {
-        if isInProcess {
-            return Date().timeIntervalSince(startTime)
-        }
-        if let endTime = endTime {
-            return endTime.timeIntervalSince(startTime)
+        if endEndDate == nil {
+            return Date().timeIntervalSince(startDate)
         } else {
-            return nil
+            return startDate.distance(to: endEndDate!)
         }
     }
     enum EntryType {
