@@ -12,7 +12,7 @@ struct Entry {
     let startDate: Date
     var endEndDate: Date?
     let type: EntryType
-    var duration: TimeInterval? {
+    var duration: TimeInterval {
         if endEndDate == nil {
             return Date().timeIntervalSince(startDate)
         } else {
@@ -25,6 +25,7 @@ struct Entry {
     }
 }
 
+extension Entry: Equatable {}
 
 
 

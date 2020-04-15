@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040D318E244734F500DD5B3D /* EntriesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D318D244734F500DD5B3D /* EntriesStorage.swift */; };
 		0419F5F92441EC1300DD5620 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F5F82441EC1300DD5620 /* AppDelegate.swift */; };
 		0419F5FB2441EC1300DD5620 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F5FA2441EC1300DD5620 /* SceneDelegate.swift */; };
 		0419F5FD2441EC1300DD5620 /* SleepLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F5FC2441EC1300DD5620 /* SleepLogVC.swift */; };
@@ -15,11 +16,14 @@
 		0419F6052441EC1400DD5620 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0419F6042441EC1400DD5620 /* Assets.xcassets */; };
 		0419F6082441EC1400DD5620 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0419F6062441EC1400DD5620 /* LaunchScreen.storyboard */; };
 		0419F6142441F20F00DD5620 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F6132441F20F00DD5620 /* Entry.swift */; };
-		0419F616244201DD00DD5620 /* EntriesSimulationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F615244201DD00DD5620 /* EntriesSimulationFactory.swift */; };
+		0419F616244201DD00DD5620 /* SimulatedEntriesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F615244201DD00DD5620 /* SimulatedEntriesFactory.swift */; };
 		0419F619244370EF00DD5620 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F618244370EF00DD5620 /* GlobalFunctions.swift */; };
+		0419F61B2443789E00DD5620 /* GoToSleepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F61A2443789E00DD5620 /* GoToSleepCell.swift */; };
+		0419F61D244378DE00DD5620 /* WakeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F61C244378DE00DD5620 /* WakeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040D318D244734F500DD5B3D /* EntriesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesStorage.swift; sourceTree = "<group>"; };
 		0419F5F52441EC1300DD5620 /* Sleepyhead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sleepyhead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0419F5F82441EC1300DD5620 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0419F5FA2441EC1300DD5620 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,8 +34,10 @@
 		0419F6072441EC1400DD5620 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0419F6092441EC1400DD5620 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0419F6132441F20F00DD5620 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
-		0419F615244201DD00DD5620 /* EntriesSimulationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesSimulationFactory.swift; sourceTree = "<group>"; };
+		0419F615244201DD00DD5620 /* SimulatedEntriesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatedEntriesFactory.swift; sourceTree = "<group>"; };
 		0419F618244370EF00DD5620 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		0419F61A2443789E00DD5620 /* GoToSleepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoToSleepCell.swift; sourceTree = "<group>"; };
+		0419F61C244378DE00DD5620 /* WakeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,8 @@
 			children = (
 				0419F6062441EC1400DD5620 /* LaunchScreen.storyboard */,
 				0419F5FE2441EC1300DD5620 /* Main.storyboard */,
+				0419F61A2443789E00DD5620 /* GoToSleepCell.swift */,
+				0419F61C244378DE00DD5620 /* WakeCell.swift */,
 				0419F6042441EC1400DD5620 /* Assets.xcassets */,
 			);
 			path = Views;
@@ -106,7 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				0419F6132441F20F00DD5620 /* Entry.swift */,
-				0419F615244201DD00DD5620 /* EntriesSimulationFactory.swift */,
+				040D318D244734F500DD5B3D /* EntriesStorage.swift */,
+				0419F615244201DD00DD5620 /* SimulatedEntriesFactory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,10 +201,13 @@
 			files = (
 				0419F6142441F20F00DD5620 /* Entry.swift in Sources */,
 				0419F5FD2441EC1300DD5620 /* SleepLogVC.swift in Sources */,
+				040D318E244734F500DD5B3D /* EntriesStorage.swift in Sources */,
+				0419F61D244378DE00DD5620 /* WakeCell.swift in Sources */,
 				0419F619244370EF00DD5620 /* GlobalFunctions.swift in Sources */,
 				0419F5F92441EC1300DD5620 /* AppDelegate.swift in Sources */,
 				0419F5FB2441EC1300DD5620 /* SceneDelegate.swift in Sources */,
-				0419F616244201DD00DD5620 /* EntriesSimulationFactory.swift in Sources */,
+				0419F61B2443789E00DD5620 /* GoToSleepCell.swift in Sources */,
+				0419F616244201DD00DD5620 /* SimulatedEntriesFactory.swift in Sources */,
 				0419F6032441EC1300DD5620 /* Sleepyhead.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

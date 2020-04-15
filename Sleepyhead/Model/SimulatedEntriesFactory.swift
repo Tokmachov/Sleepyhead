@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct EntriesFactory {
+struct SimulatedEntriesFactory {
     static private let durations: [TimeInterval] = [3600, 4000, 5000, 7200, 10800, 14400, 18000]
     static private let dayStartTimes: [(hour: Int, minute: Int)] = [(07, 45), (07, 50), (08, 00), (08, 15)]
     static private let nightSleepStartTimes: [(hour: Int, minute: Int)] = [(21, 00), (21, 15), (21, 25), (21, 30)]
@@ -95,7 +95,7 @@ struct EntriesFactory {
     static private func entriesWithEndDatesSet(_ entries: [Entry]) -> [Entry] {
         var mutableEntries = entries
         var counter = 0
-        while counter < (entries.count - 2) {
+        while counter < (entries.count - 1) {
             mutableEntries[counter].endEndDate = mutableEntries[counter + 1].startDate
             counter += 1
         }
