@@ -20,6 +20,10 @@ class SleepLogVC: UITableViewController {
         printEntries(entriesStorage.entries)
         setLastEntryDurationUpdateTimer()
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        lastEntryDurationUpdateTimer?.invalidate()
+    }
 }
 
 extension SleepLogVC {
@@ -38,42 +42,36 @@ extension SleepLogVC {
             cell = tableView.dequeueReusableCell(withIdentifier: "WakeTimeCell", for: indexPath)
 
         }
-        if indexPath != lastIndexPath {
-            configureCell(cell, with: entry, durationFormatter: dateComponentsFormatterForEntryDurationOfNotLastCell)
-        } else {
-            configureCell(cell, with: entry, durationFormatter: dateComponentsFormatterForEntryDorationOfLastCell)
-        }
+        configureCell(cell, with: entry)
         return cell
     }
 }
 
 extension SleepLogVC {
-    private var dateFormatter: DateFormatter {
+    private var entryDateFormatter: DateFormatter {
        let formatter = DateFormatter()
         formatter.timeStyle = .medium
         formatter.dateStyle = .short
         return formatter
     }
-    private var dateComponentsFormatterForEntryDurationOfNotLastCell: DateComponentsFormatter {
+    private func entryDurationFormatter(_ entry: Entry) -> DateComponentsFormatter {
         let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute]
         formatter.unitsStyle = .short
+        if entry == entriesStorage.entries.last! {
+            formatter.allowedUnits = [.hour, .minute, .second]
+        } else {
+            formatter.allowedUnits = [.hour, .minute]
+        }
         return formatter
     }
-    private var dateComponentsFormatterForEntryDorationOfLastCell: DateComponentsFormatter {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute, .second]
-        formatter.unitsStyle = .short
-        return formatter
-    }
-    private func configureCell(_ cell: UITableViewCell, with entry: Entry, durationFormatter: DateComponentsFormatter) {
-        let startTime = dateFormatter.string(from: entry.startDate)
+    private func configureCell(_ cell: UITableViewCell, with entry: Entry) {
+        let startTime = entryDateFormatter.string(from: entry.startDate)
         guard let duration = entriesStorage.duration(of: entry) else { fatalError("unable to produce entry duration") }
-        let durationFormatted = durationFormatter.string(from: duration)
+        let formatter = entryDurationFormatter(entry)
+        let durationFormatted = formatter.string(from: duration)
         cell.textLabel?.text = startTime
         cell.detailTextLabel?.text = durationFormatted
     }
-    
     private func setLastEntryDurationUpdateTimer() {
         lastEntryDurationUpdateTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             guard let self = self else { return }
