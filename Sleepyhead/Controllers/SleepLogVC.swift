@@ -51,13 +51,13 @@ extension SleepLogVC {
     private var entryDateFormatter: DateFormatter {
        let formatter = DateFormatter()
         formatter.timeStyle = .medium
-        formatter.dateStyle = .short
+        formatter.dateStyle = .none
         return formatter
     }
-    private func entryDurationFormatter(_ entry: Event) -> DateComponentsFormatter {
+    private func entryDurationFormatter(forCellAtPosition isLast: Bool) -> DateComponentsFormatter {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .short
-        if entry == entriesStorage.entries.last! {
+        if isLast {
             formatter.allowedUnits = [.hour, .minute, .second]
         } else {
             formatter.allowedUnits = [.hour, .minute]
@@ -66,11 +66,15 @@ extension SleepLogVC {
     }
     private func configureCell(_ cell: UITableViewCell, with entry: Event) {
         let startTime = entryDateFormatter.string(from: entry.startDate)
-        guard let duration = entriesStorage.duration(of: entry) else { fatalError("unable to produce entry duration") }
-        let formatter = entryDurationFormatter(entry)
+        let isLast = (entriesStorage.entries.last == entry)
+        let duration = entriesStorage.duration(of: entry)!
+        let formatter = entryDurationFormatter(forCellAtPosition: isLast)
         let durationFormatted = formatter.string(from: duration)
         cell.textLabel?.text = startTime
         cell.detailTextLabel?.text = durationFormatted
+        if isLast {
+            cell.detailTextLabel?.text! += " \u{023F1}"
+        }
     }
     private func setLastEntryDurationUpdateTimer() {
         lastEntryDurationUpdateTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
