@@ -54,7 +54,7 @@ extension SleepLogVC {
         formatter.dateStyle = .short
         return formatter
     }
-    private func entryDurationFormatter(_ entry: Entry) -> DateComponentsFormatter {
+    private func entryDurationFormatter(_ entry: Event) -> DateComponentsFormatter {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .short
         if entry == entriesStorage.entries.last! {
@@ -64,7 +64,7 @@ extension SleepLogVC {
         }
         return formatter
     }
-    private func configureCell(_ cell: UITableViewCell, with entry: Entry) {
+    private func configureCell(_ cell: UITableViewCell, with entry: Event) {
         let startTime = entryDateFormatter.string(from: entry.startDate)
         guard let duration = entriesStorage.duration(of: entry) else { fatalError("unable to produce entry duration") }
         let formatter = entryDurationFormatter(entry)

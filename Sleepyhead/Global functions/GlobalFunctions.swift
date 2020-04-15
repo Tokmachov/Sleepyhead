@@ -8,7 +8,7 @@
 
 import Foundation
 
-func printEntries(_ entries: [Entry]) {
+func printEntries(_ entries: [Event]) {
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium

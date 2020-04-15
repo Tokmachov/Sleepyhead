@@ -9,8 +9,8 @@
 import Foundation
 
 struct EntriesStorage {
-    private(set) var entries: [Entry]
-    subscript(index: Int) -> Entry? {
+    private(set) var entries: [Event]
+    subscript(index: Int) -> Event? {
         get {
             if entries.indices.contains(index) {
                 return entries[index]
@@ -19,7 +19,7 @@ struct EntriesStorage {
             }
         }
     }
-    func duration(of entry: Entry) -> TimeInterval? {
+    func duration(of entry: Event) -> TimeInterval? {
         guard let index = entries.firstIndex(of: entry) else { return nil }
         guard let indexOfNexEtry = entries.index(
             index,
