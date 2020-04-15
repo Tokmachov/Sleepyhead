@@ -10,8 +10,8 @@ import Foundation
 
 struct Event {
     let startDate: Date
-    let type: EntryType
-    enum EntryType {
+    let type: EnventType
+    enum EnventType {
         case wakeTime
         case goToSleepTime
     }
