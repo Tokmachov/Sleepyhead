@@ -23,7 +23,6 @@ struct SimulatedEntriesFactory {
             let nextMorningWakeEntry = makeNextMorningWakeEntry(dayStartTimes: dayStartTimes, day: currentDay)
             let entriesForDay = makeEntriesForDay(firstEntry: firstEntry, nightSleepStartEntry: nightSleepEntry, nextMorningWakeEntry: nextMorningWakeEntry, durations: durations)
             entries.append(contentsOf: entriesForDay)
-            entries = entriesWithEndDatesSet(entries)
         }
         return entries
     }
@@ -37,24 +36,24 @@ struct SimulatedEntriesFactory {
         if let entry = previousEntries.last {
             let duration = durations.randomElement()!
             let date = entry.startDate.addingTimeInterval(duration)
-            return Event(startDate: date, endEndDate: nil, type: .goToSleepTime)
+            return Event(startDate: date, type: .goToSleepTime)
         } else {
             let dayStartTime = dayStartTimes.randomElement()!
             let date = makeDate(time: dayStartTime, day: currentDay)
-            return Event(startDate: date, endEndDate: nil, type: .wakeTime)
+            return Event(startDate: date, type: .wakeTime)
         }
     }
 
     static private func makeNightSleepEntry(nightSleepStartTimes: [(hour: Int, minute: Int)], day: (day: Int, month: Int, year: Int)) -> Event {
         let time = nightSleepStartTimes.randomElement()!
         let date = makeDate(time: time, day: day)
-        return Event(startDate: date, endEndDate: nil, type: .goToSleepTime)
+        return Event(startDate: date, type: .goToSleepTime)
     }
 
     static private func makeNextMorningWakeEntry(dayStartTimes: [(hour: Int, minute: Int)], day: (day: Int, month: Int, year: Int)) -> Event {
         let time = dayStartTimes.randomElement()!
         let date = makeDate(time: time, day: day)
-        return Event(startDate: date, endEndDate: nil, type: .wakeTime)
+        return Event(startDate: date, type: .wakeTime)
     }
 
     static private func makeEntriesForDay(firstEntry: Event, nightSleepStartEntry: Event, nextMorningWakeEntry: Event, durations: [TimeInterval]) -> [Event] {
@@ -65,9 +64,9 @@ struct SimulatedEntriesFactory {
             let duration = durations.randomElement()!
             let nextDate = entry.startDate.addingTimeInterval(duration)
             if entries.last!.type == .goToSleepTime {
-                entry = Event(startDate: nextDate, endEndDate: nil, type: .wakeTime)
+                entry = Event(startDate: nextDate, type: .wakeTime)
             } else {
-                entry = Event(startDate: nextDate, endEndDate: nil, type: .goToSleepTime)
+                entry = Event(startDate: nextDate, type: .goToSleepTime)
             }
         }
         if entries.last!.type == .goToSleepTime {
@@ -90,15 +89,5 @@ struct SimulatedEntriesFactory {
             minute: time.minute,
             second: 0, nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
         return dateCompoents.date!
-    }
-
-    static private func entriesWithEndDatesSet(_ entries: [Event]) -> [Event] {
-        var mutableEntries = entries
-        var counter = 0
-        while counter < (entries.count - 1) {
-            mutableEntries[counter].endEndDate = mutableEntries[counter + 1].startDate
-            counter += 1
-        }
-        return mutableEntries
     }
 }

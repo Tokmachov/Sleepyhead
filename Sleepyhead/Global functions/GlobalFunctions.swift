@@ -18,12 +18,5 @@ func printEntries(_ entries: [Event]) {
     for entry in entries {
         print(entry.type)
         print("Start: \(dateFormatter.string(from: entry.startDate))")
-        if let endDate = entry.endEndDate {
-            print("Start: \(dateFormatter.string(from: endDate))")
-            print("Duration: \(entry.duration)")
-        } else {
-            print("End date is not set")
-        }
-        print("")
     }
 }
