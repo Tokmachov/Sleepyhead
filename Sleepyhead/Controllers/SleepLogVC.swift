@@ -26,7 +26,7 @@ class SleepLogVC: UITableViewController {
             events = eventsData.map { (eventData) -> Event in
                 let event = Event(context: EventsPersistenceService.managedObjectContext)
                 event.startDate = eventData.startDate
-                event.type = eventData.type
+                event.type = eventData.eventType
                 return event
             }
             EventsPersistenceService.saveContext()
@@ -34,6 +34,7 @@ class SleepLogVC: UITableViewController {
             print("Evets were fetched")
         }
         eventsStorage = EventsStorage(events: events)
+        setLastEntryDurationUpdateTimer()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

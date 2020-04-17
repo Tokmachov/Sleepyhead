@@ -31,8 +31,3 @@ extension Event {
         }
     }
 }
-
-enum EnventType: Int {
-        case wakeTime = 0
-        case goToSleepTime = 1
-  }

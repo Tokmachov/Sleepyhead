@@ -21,6 +21,7 @@
 		0449D50324499B13002713FF /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0449D50124499B13002713FF /* Event+CoreDataProperties.swift */; };
 		0470C054244852B600D7D584 /* Sleepyhead.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0419F6012441EC1300DD5620 /* Sleepyhead.xcdatamodeld */; };
 		047782922447A4BD00CE3059 /* EventsPersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047782912447A4BD00CE3059 /* EventsPersistenceService.swift */; };
+		04B284D3244A0C8300630609 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B284D2244A0C8300630609 /* EventType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		0449D50024499B13002713FF /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0449D50124499B13002713FF /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		047782912447A4BD00CE3059 /* EventsPersistenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsPersistenceService.swift; sourceTree = "<group>"; };
+		04B284D2244A0C8300630609 /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				0419F6132441F20F00DD5620 /* EventDummy.swift */,
+				04B284D2244A0C8300630609 /* EventType.swift */,
 				040D318D244734F500DD5B3D /* EventsStorage.swift */,
 				0419F615244201DD00DD5620 /* SimulatedEventsDataFactory.swift */,
 			);
@@ -220,6 +223,7 @@
 				0419F5F92441EC1300DD5620 /* AppDelegate.swift in Sources */,
 				0419F5FB2441EC1300DD5620 /* SceneDelegate.swift in Sources */,
 				0470C054244852B600D7D584 /* Sleepyhead.xcdatamodeld in Sources */,
+				04B284D3244A0C8300630609 /* EventType.swift in Sources */,
 				0419F616244201DD00DD5620 /* SimulatedEventsDataFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
