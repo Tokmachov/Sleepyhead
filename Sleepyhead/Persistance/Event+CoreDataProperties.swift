@@ -13,7 +13,7 @@ import CoreData
 
 extension Event {
 
-    @nonobjc public class func CreatefetchRequest() -> NSFetchRequest<Event> {
+    @nonobjc public class func createfetchRequest() -> NSFetchRequest<Event> {
         return NSFetchRequest<Event>(entityName: "Event")
     }
 

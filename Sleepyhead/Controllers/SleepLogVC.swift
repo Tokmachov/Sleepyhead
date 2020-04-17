@@ -18,14 +18,21 @@ class SleepLogVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let eventsData = SimulatedEventsDataFactory.makeEventsSimulatedData(numberOfDays: 3)
-        let events = eventsData.map { (eventData) -> Event in
-            let event = Event(context: EventsPersistenceService.managedObjectContext)
-            event.startDate = eventData.startDate
-            event.type = eventData.type
-            return event
+        var events = [Event]()
+        events = EventsPersistenceService.fetchEvents()
+        if events.isEmpty {
+            print("Evets were not fetched")
+            let eventsData = SimulatedEventsDataFactory.makeEventsSimulatedData(numberOfDays: 3)
+            events = eventsData.map { (eventData) -> Event in
+                let event = Event(context: EventsPersistenceService.managedObjectContext)
+                event.startDate = eventData.startDate
+                event.type = eventData.type
+                return event
+            }
+            EventsPersistenceService.saveContext()
+        } else {
+            print("Evets were fetched")
         }
-        EventsPersistenceService.saveContext()
         eventsStorage = EventsStorage(events: events)
     }
     override func viewWillDisappear(_ animated: Bool) {

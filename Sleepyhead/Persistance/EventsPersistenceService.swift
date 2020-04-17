@@ -22,6 +22,19 @@ struct EventsPersistenceService {
     static func saveContext() {
         appDelegate.saveContext()
     }
+    static func fetchEvents() -> [Event] {
+        let fetchRequest = Event.createfetchRequest()
+        let sorting = NSSortDescriptor(key: "startDate", ascending: true)
+        fetchRequest.sortDescriptors = [sorting]
+        let events: [Event]
+        do {
+            try events = managedObjectContext.fetch(fetchRequest)
+        } catch {
+            print(error)
+            fatalError()
+        }
+        return events
+    }
 }
 
 extension EventsPersistenceService {
