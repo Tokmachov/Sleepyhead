@@ -8,7 +8,7 @@
 
 import Foundation
 
-func printEntries(_ entries: [Event]) {
+func printEntries(_ entries: [EventDummy]) {
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -16,7 +16,7 @@ func printEntries(_ entries: [Event]) {
         return dateFormatter
     }()
     for entry in entries {
-        print(entry.type)
-        print("Start: \(dateFormatter.string(from: entry.startDate))")
+        print(entry.type!)
+        print("Start: \(dateFormatter.string(from: entry.startDate!))")
     }
 }

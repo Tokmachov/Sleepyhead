@@ -10,15 +10,23 @@ import UIKit
 
 class SleepLogVC: UITableViewController {
     
-    private var entriesStorage = EntriesStorage()
+    private var eventsStorage: EventsStorage!
     private var lastEntryDurationUpdateTimer: Timer?
     private var lastIndexPath: IndexPath {
-        return IndexPath(row: entriesStorage.entries.count - 1, section: 0)
+        return IndexPath(row: eventsStorage.events.count - 1, section: 0)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        printEntries(entriesStorage.entries)
-        setLastEntryDurationUpdateTimer()
+        let eventsData = SimulatedEventsDataFactory.makeEventsSimulatedData(numberOfDays: 3)
+        let events = eventsData.map { (eventData) -> Event in
+            let event = Event(context: EventsPersistenceService.managedObjectContext)
+            event.startDate = eventData.startDate
+            event.type = eventData.type
+            return event
+        }
+        EventsPersistenceService.saveContext()
+        eventsStorage = EventsStorage(events: events)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -27,14 +35,18 @@ class SleepLogVC: UITableViewController {
 }
 
 extension SleepLogVC {
+    
+}
+
+extension SleepLogVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return entriesStorage.entries.count
+        return eventsStorage.events.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let entryIndex = indexPath.row
-        let entry = entriesStorage.entries[entryIndex]
+        let eventIndex = indexPath.row
+        let event = eventsStorage.events[eventIndex]
         let cell: UITableViewCell
-        switch entry.type {
+        switch event.type {
         case .goToSleepTime:
             cell = tableView.dequeueReusableCell(withIdentifier: "BedTimeCell", for: indexPath)
         
@@ -42,7 +54,7 @@ extension SleepLogVC {
             cell = tableView.dequeueReusableCell(withIdentifier: "WakeTimeCell", for: indexPath)
 
         }
-        configureCell(cell, with: entry)
+        configureCell(cell, with: event)
         return cell
     }
 }
@@ -64,10 +76,10 @@ extension SleepLogVC {
         }
         return formatter
     }
-    private func configureCell(_ cell: UITableViewCell, with entry: Event) {
-        let startTime = entryDateFormatter.string(from: entry.startDate)
-        let isLast = (entriesStorage.entries.last == entry)
-        let duration = entriesStorage.duration(of: entry)!
+    private func configureCell(_ cell: UITableViewCell, with event: Event) {
+        let startTime = entryDateFormatter.string(from: event.startDate)
+        let isLast = (eventsStorage.events.last == event)
+        let duration = eventsStorage.duration(of: event)!
         let formatter = entryDurationFormatter(forCellAtPosition: isLast)
         let durationFormatted = formatter.string(from: duration)
         cell.textLabel?.text = startTime
