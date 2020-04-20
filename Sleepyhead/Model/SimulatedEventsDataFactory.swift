@@ -36,18 +36,18 @@ struct SimulatedEventsDataFactory {
         if let eventData = previousEventDatas.last {
             let duration = durations.randomElement()!
             let date = eventData.startDate.addingTimeInterval(duration)
-            return EventData(startDate: date, eventType: .goToSleepTime)
+            return EventData(startDate: date, eventType: .sleepTime)
         } else {
             let dayStartTime = dayStartTimes.randomElement()!
             let date = makeDate(time: dayStartTime, day: currentDay)
-            return EventData(startDate: date, eventType: .goToSleepTime)
+            return EventData(startDate: date, eventType: .wakeTime)
         }
     }
 
     static private func makeNightSleepEventData(nightSleepStartTimes: [(hour: Int, minute: Int)], day: (day: Int, month: Int, year: Int)) -> EventData {
         let time = nightSleepStartTimes.randomElement()!
         let date = makeDate(time: time, day: day)
-        return EventData(startDate: date, eventType: .goToSleepTime)
+        return EventData(startDate: date, eventType: .sleepTime)
     }
 
     static private func makeNextMorningWakeEventData(dayStartTimes: [(hour: Int, minute: Int)], day: (day: Int, month: Int, year: Int)) -> EventData {
@@ -63,13 +63,13 @@ struct SimulatedEventsDataFactory {
             eventsData.append(eventData)
             let duration = durations.randomElement()!
             let nextDate = eventData.startDate.addingTimeInterval(duration)
-            if eventsData.last!.eventType == .goToSleepTime {
+            if eventsData.last!.eventType == .sleepTime {
                 eventData = EventData(startDate: nextDate, eventType: .wakeTime)
             } else {
-                eventData = EventData(startDate: nextDate, eventType: .goToSleepTime)
+                eventData = EventData(startDate: nextDate, eventType: .sleepTime)
             }
         }
-        if eventsData.last!.eventType == .goToSleepTime {
+        if eventsData.last!.eventType == .sleepTime {
             eventsData.removeLast()
         }
         eventsData.append(nightSleepStartEntry)

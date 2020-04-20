@@ -8,15 +8,15 @@
 
 import Foundation
 
-func printEntries(_ entries: [EventDummy]) {
+func printEvents(_ events: [Event]) {
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
         return dateFormatter
     }()
-    for entry in entries {
-        print(entry.type!)
-        print("Start: \(dateFormatter.string(from: entry.startDate!))")
+    for event in events {
+        print(event.type)
+        print("Start: \(dateFormatter.string(from: event.startDate))")
     }
 }
