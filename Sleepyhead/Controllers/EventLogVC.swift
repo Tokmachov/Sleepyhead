@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SleepLogVC: UITableViewController {
+class EventLogVC: UITableViewController {
     
     private var eventsStore: EventsStore!
     private var lastEntryDurationUpdateTimer: Timer?
@@ -39,7 +39,7 @@ class SleepLogVC: UITableViewController {
     }
 }
 
-extension SleepLogVC {
+extension EventLogVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return eventsStore.observedDaysCount
     }
@@ -64,7 +64,7 @@ extension SleepLogVC {
     }
 }
 
-extension SleepLogVC {
+extension EventLogVC {
     private var indexPathOfCellForTimeUpdates: IndexPath {
         return IndexPath(row: eventsStore.indexOfLastEventInLastDay, section: eventsStore.indexOfLastDay)
     }
@@ -86,7 +86,7 @@ extension SleepLogVC {
 }
 
 //MARK: UI setups
-extension SleepLogVC {
+extension EventLogVC {
     private func stringForEventSectionHeader(section: Int) -> String {
         let date = eventsStore[section].date
         let dateString = "Day: \(date.day).\(date.month).\(date.year)"
