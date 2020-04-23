@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+enum PositionOfEventInTheDay {
+    case dayStarting
+    case dayFinishing
+    case dayFilling
+}

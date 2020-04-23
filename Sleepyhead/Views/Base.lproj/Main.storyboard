@@ -3,13 +3,15 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Журнал-->
         <scene sceneID="tYh-kf-UCN">
             <objects>
-                <tableViewController id="gBn-HK-2FB" customClass="SleepLogVC" customModule="Sleepyhead" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EventLogVC" title="Журнал" id="gBn-HK-2FB" customClass="EventLogVC" customModule="Sleepyhead" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5MV-S0-gfw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -206,21 +208,138 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JVU-WS-A4v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="992.79999999999995" y="118.29085457271366"/>
+            <point key="canvasLocation" x="868" y="785"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Создать новое-->
+        <scene sceneID="mbk-LP-BrP">
+            <objects>
+                <viewController storyboardIdentifier="CreateNewEvent" title="Создать новое" id="dcV-un-XXp" customClass="CreateNewEventVC" customModule="Sleepyhead" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XBF-19-a1h">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="rJc-1D-MNa"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gCp-OD-gBV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-463" y="785"/>
+        </scene>
+        <!--Управление событием-->
+        <scene sceneID="m0X-Ue-ULR">
+            <objects>
+                <viewController storyboardIdentifier="EventControlVC" title="Управление событием" id="myz-JG-o0b" customClass="EventControlVC" customModule="Sleepyhead" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wzX-nH-GRw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rAo-aa-Xaz">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="77.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HnG-l1-gnV">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сейчас идет:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m27-ZA-FE2">
+                                                <rect key="frame" x="0.0" y="0.0" width="145.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Сон/Бодрствование" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQG-SQ-UTj">
+                                                <rect key="frame" x="153.5" y="0.0" width="221.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DA4-3s-RoO">
+                                        <rect key="frame" x="0.0" y="28.5" width="375" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Период началися:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1XB-I8-L2a">
+                                                <rect key="frame" x="0.0" y="0.0" width="145.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3p-3w-8jk">
+                                                <rect key="frame" x="153.5" y="0.0" width="221.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JGS-tz-2Lc">
+                                        <rect key="frame" x="0.0" y="57" width="375" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Период длиться:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAw-X7-neA">
+                                                <rect key="frame" x="0.0" y="0.0" width="145.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNV-Vl-d1E">
+                                                <rect key="frame" x="153.5" y="0.0" width="221.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="1XB-I8-L2a" firstAttribute="width" secondItem="oAw-X7-neA" secondAttribute="width" id="k4R-8l-bWN"/>
+                                    <constraint firstItem="1XB-I8-L2a" firstAttribute="width" secondItem="m27-ZA-FE2" secondAttribute="width" id="xRN-qO-x0H"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BX8-lk-Yaz">
+                                <rect key="frame" x="147.5" y="293.5" width="80" height="80"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="BX8-lk-Yaz" secondAttribute="height" multiplier="1:1" id="s5F-gy-cZu"/>
+                                    <constraint firstAttribute="width" constant="80" id="veg-ng-4Xb"/>
+                                </constraints>
+                                <state key="normal" title="asdasdas">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="newEventButtonWasPressed" destination="myz-JG-o0b" eventType="touchUpInside" id="xMJ-TA-jYm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="suQ-Xv-giA" firstAttribute="trailing" secondItem="rAo-aa-Xaz" secondAttribute="trailing" id="5hA-nl-BkS"/>
+                            <constraint firstItem="BX8-lk-Yaz" firstAttribute="centerY" secondItem="wzX-nH-GRw" secondAttribute="centerY" id="EaB-s2-MdF"/>
+                            <constraint firstItem="rAo-aa-Xaz" firstAttribute="top" secondItem="suQ-Xv-giA" secondAttribute="top" id="d1u-UT-TIn"/>
+                            <constraint firstItem="BX8-lk-Yaz" firstAttribute="centerX" secondItem="wzX-nH-GRw" secondAttribute="centerX" id="hyZ-sM-dLR"/>
+                            <constraint firstItem="rAo-aa-Xaz" firstAttribute="leading" secondItem="suQ-Xv-giA" secondAttribute="leading" id="koi-qh-3xK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="suQ-Xv-giA"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Управление" id="DLr-KL-bui"/>
+                    <connections>
+                        <outlet property="durationLabel" destination="YNV-Vl-d1E" id="Gkh-Zb-Sb7"/>
+                        <outlet property="newEventButton" destination="BX8-lk-Yaz" id="YQH-8i-WGl"/>
+                        <outlet property="startDateLabel" destination="x3p-3w-8jk" id="73B-7y-2mq"/>
+                        <outlet property="typeLabel" destination="QQG-SQ-UTj" id="A47-jX-Aio"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KlE-ci-gOR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="209" y="785"/>
+        </scene>
+        <!--Tab BarVC-->
         <scene sceneID="LEl-iK-Ofw">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="e5w-bc-P4f" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="e5w-bc-P4f" customClass="TabBarVC" customModule="Sleepyhead" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i3k-Pr-rd8">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
-                    <connections>
-                        <segue destination="gBn-HK-2FB" kind="relationship" relationship="viewControllers" id="Ley-9M-DEM"/>
-                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZZa-qJ-FL1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

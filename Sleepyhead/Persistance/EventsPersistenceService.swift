@@ -22,7 +22,7 @@ struct EventsPersistenceService {
     static func saveContext() {
         appDelegate.saveContext()
     }
-    static func fetchEvents() -> [Event] {
+    static func fetchAllEvents() -> [Event] {
         let fetchRequest = Event.createfetchRequest()
         let sorting = NSSortDescriptor(key: "startDate", ascending: true)
         fetchRequest.sortDescriptors = [sorting]

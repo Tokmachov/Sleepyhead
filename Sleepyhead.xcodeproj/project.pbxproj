@@ -8,9 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		040D318E244734F500DD5B3D /* EventsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D318D244734F500DD5B3D /* EventsStore.swift */; };
+		0414CE6C24504ACC00D427A5 /* EventControlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0414CE6B24504ACC00D427A5 /* EventControlVC.swift */; };
+		0414CE6E24504CD400D427A5 /* PositionOfEventInTheDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0414CE6D24504CD400D427A5 /* PositionOfEventInTheDay.swift */; };
+		0414CE7024505DD200D427A5 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0414CE6F24505DD200D427A5 /* TabBarVC.swift */; };
+		0414CE7224505EA300D427A5 /* CreateNewEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0414CE7124505EA300D427A5 /* CreateNewEventVC.swift */; };
+		0414CE742450B75900D427A5 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0414CE732450B75900D427A5 /* DateFormatters.swift */; };
+		0414CE762450D87600D427A5 /* SleepLogColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0414CE752450D87600D427A5 /* SleepLogColors.swift */; };
+		0414CE782450DA0F00D427A5 /* EventControlVCColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0414CE772450DA0F00D427A5 /* EventControlVCColors.swift */; };
 		0419F5F92441EC1300DD5620 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F5F82441EC1300DD5620 /* AppDelegate.swift */; };
 		0419F5FB2441EC1300DD5620 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F5FA2441EC1300DD5620 /* SceneDelegate.swift */; };
-		0419F5FD2441EC1300DD5620 /* SleepLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F5FC2441EC1300DD5620 /* SleepLogVC.swift */; };
+		0419F5FD2441EC1300DD5620 /* EventLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419F5FC2441EC1300DD5620 /* EventLogVC.swift */; };
 		0419F6002441EC1300DD5620 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0419F5FE2441EC1300DD5620 /* Main.storyboard */; };
 		0419F6052441EC1400DD5620 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0419F6042441EC1400DD5620 /* Assets.xcassets */; };
 		0419F6082441EC1400DD5620 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0419F6062441EC1400DD5620 /* LaunchScreen.storyboard */; };
@@ -29,10 +36,17 @@
 
 /* Begin PBXFileReference section */
 		040D318D244734F500DD5B3D /* EventsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsStore.swift; sourceTree = "<group>"; };
+		0414CE6B24504ACC00D427A5 /* EventControlVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventControlVC.swift; sourceTree = "<group>"; };
+		0414CE6D24504CD400D427A5 /* PositionOfEventInTheDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionOfEventInTheDay.swift; sourceTree = "<group>"; };
+		0414CE6F24505DD200D427A5 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
+		0414CE7124505EA300D427A5 /* CreateNewEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEventVC.swift; sourceTree = "<group>"; };
+		0414CE732450B75900D427A5 /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
+		0414CE752450D87600D427A5 /* SleepLogColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLogColors.swift; sourceTree = "<group>"; };
+		0414CE772450DA0F00D427A5 /* EventControlVCColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventControlVCColors.swift; sourceTree = "<group>"; };
 		0419F5F52441EC1300DD5620 /* Sleepyhead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sleepyhead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0419F5F82441EC1300DD5620 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0419F5FA2441EC1300DD5620 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0419F5FC2441EC1300DD5620 /* SleepLogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepLogVC.swift; sourceTree = "<group>"; };
+		0419F5FC2441EC1300DD5620 /* EventLogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLogVC.swift; sourceTree = "<group>"; };
 		0419F5FF2441EC1300DD5620 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0419F6022441EC1300DD5620 /* Sleepyhead.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sleepyhead.xcdatamodel; sourceTree = "<group>"; };
 		0419F6042441EC1400DD5620 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,7 +94,7 @@
 		0419F5F72441EC1300DD5620 /* Sleepyhead */ = {
 			isa = PBXGroup;
 			children = (
-				0419F617244370D500DD5620 /* Global functions */,
+				0419F617244370D500DD5620 /* Utility */,
 				0445F808244771050039B3A8 /* Persistance */,
 				0419F6122441F1CC00DD5620 /* Model */,
 				0419F60F2441F11900DD5620 /* Controllers */,
@@ -94,7 +108,10 @@
 		0419F60F2441F11900DD5620 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0419F5FC2441EC1300DD5620 /* SleepLogVC.swift */,
+				0419F5FC2441EC1300DD5620 /* EventLogVC.swift */,
+				0414CE6B24504ACC00D427A5 /* EventControlVC.swift */,
+				0414CE7124505EA300D427A5 /* CreateNewEventVC.swift */,
+				0414CE6F24505DD200D427A5 /* TabBarVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -103,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				0419F6062441EC1400DD5620 /* LaunchScreen.storyboard */,
+				0414CE752450D87600D427A5 /* SleepLogColors.swift */,
+				0414CE772450DA0F00D427A5 /* EventControlVCColors.swift */,
 				0419F5FE2441EC1300DD5620 /* Main.storyboard */,
 				04B28500244C4E4300630609 /* DayStartingWakeCell.swift */,
 				04B28502244C6EFE00630609 /* DayFinishingSleepCell.swift */,
@@ -126,18 +145,20 @@
 			isa = PBXGroup;
 			children = (
 				04B284D2244A0C8300630609 /* EventType.swift */,
+				0414CE6D24504CD400D427A5 /* PositionOfEventInTheDay.swift */,
 				040D318D244734F500DD5B3D /* EventsStore.swift */,
 				0419F615244201DD00DD5620 /* SimulatedEventsDataFactory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		0419F617244370D500DD5620 /* Global functions */ = {
+		0419F617244370D500DD5620 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				0419F618244370EF00DD5620 /* GlobalFunctions.swift */,
+				0414CE732450B75900D427A5 /* DateFormatters.swift */,
 			);
-			path = "Global functions";
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		0445F808244771050039B3A8 /* Persistance */ = {
@@ -223,19 +244,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				0449D50324499B13002713FF /* Event+CoreDataProperties.swift in Sources */,
-				0419F5FD2441EC1300DD5620 /* SleepLogVC.swift in Sources */,
+				0419F5FD2441EC1300DD5620 /* EventLogVC.swift in Sources */,
 				0449D50224499B13002713FF /* Event+CoreDataClass.swift in Sources */,
 				04B28507244C6F7000630609 /* DayFillingSleepCell.swift in Sources */,
+				0414CE7024505DD200D427A5 /* TabBarVC.swift in Sources */,
 				040D318E244734F500DD5B3D /* EventsStore.swift in Sources */,
+				0414CE762450D87600D427A5 /* SleepLogColors.swift in Sources */,
+				0414CE7224505EA300D427A5 /* CreateNewEventVC.swift in Sources */,
 				04B28501244C4E4300630609 /* DayStartingWakeCell.swift in Sources */,
 				0419F619244370EF00DD5620 /* GlobalFunctions.swift in Sources */,
 				04B28505244C6F3700630609 /* DayFillingWakeCell.swift in Sources */,
 				047782922447A4BD00CE3059 /* EventsPersistenceService.swift in Sources */,
 				0419F5F92441EC1300DD5620 /* AppDelegate.swift in Sources */,
 				04B28503244C6EFE00630609 /* DayFinishingSleepCell.swift in Sources */,
+				0414CE6C24504ACC00D427A5 /* EventControlVC.swift in Sources */,
 				0419F5FB2441EC1300DD5620 /* SceneDelegate.swift in Sources */,
 				0470C054244852B600D7D584 /* Sleepyhead.xcdatamodeld in Sources */,
+				0414CE742450B75900D427A5 /* DateFormatters.swift in Sources */,
+				0414CE782450DA0F00D427A5 /* EventControlVCColors.swift in Sources */,
 				04B284D3244A0C8300630609 /* EventType.swift in Sources */,
+				0414CE6E24504CD400D427A5 /* PositionOfEventInTheDay.swift in Sources */,
 				0419F616244201DD00DD5620 /* SimulatedEventsDataFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

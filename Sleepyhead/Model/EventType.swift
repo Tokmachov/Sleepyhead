@@ -8,13 +8,7 @@
 
 import Foundation
 
-enum EnventType: Int {
+enum EventType: Int {
         case wakeTime = 0
         case sleepTime = 1
 }
-
-enum PositionOfEventInTheDay {
-       case dayStarting
-       case dayFinishing
-       case dayFilling
-   }

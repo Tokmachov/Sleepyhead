@@ -9,28 +9,11 @@
 import UIKit
 
 class EventLogVC: UITableViewController {
-    
-    private var eventsStore: EventsStore!
+    var eventsStore: EventsStore!
     private var lastEntryDurationUpdateTimer: Timer?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        var events = [Event]()
-        events = EventsPersistenceService.fetchEvents()
-        if events.isEmpty {
-            print("Evets were not fetched")
-            let eventsData = SimulatedEventsDataFactory.makeEventsSimulatedData(numberOfDays: 3)
-            events = eventsData.map { (eventData) -> Event in
-                let event = Event(context: EventsPersistenceService.managedObjectContext)
-                event.startDate = eventData.startDate
-                event.type = eventData.eventType
-                return event
-            }
-            EventsPersistenceService.saveContext()
-        } else {
-            print("Evets were fetched")
-        }
-        eventsStore = EventsStore(events: events)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setLastEntryDurationUpdateTimer()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,7 +57,7 @@ extension EventLogVC {
             self.tableView.reloadRows(at: [self.indexPathOfCellForTimeUpdates], with: .fade)
         }
     }
-    private func cellId(for eventType: EnventType, atPosition position: PositionOfEventInTheDay) -> String? {
+    private func cellId(for eventType: EventType, atPosition position: PositionOfEventInTheDay) -> String? {
         switch eventType {
         case .wakeTime where position == .dayStarting: return "DayStartingCell"
         case .wakeTime where position == .dayFilling: return "DayFillingWakeCell"
@@ -102,7 +85,7 @@ extension EventLogVC {
         init(eventStore: EventsStore) {
             self.eventsStore = eventStore
         }
-        func make(eventType: EnventType, eventPosition: PositionOfEventInTheDay) -> ((UITableViewCell, Event) -> ())? {
+        func make(eventType: EventType, eventPosition: PositionOfEventInTheDay) -> ((UITableViewCell, Event) -> ())? {
             switch (eventType, eventPosition) {
             case (.wakeTime, .dayStarting): return configureDayStartingWakeCell(_:_:)
             case (.wakeTime, .dayFilling): return configureDayFillingWakeCell(_:_:)
@@ -113,51 +96,34 @@ extension EventLogVC {
         }
         private func configureDayStartingWakeCell(_ cell: UITableViewCell, _ event: Event) -> () {
             let isCellForDynamicTimeUpdates = (eventsStore.eventForTimeUpdates == event)
-            let durationFormatter = eventDurationFormatter(forCellAtLastPosition: isCellForDynamicTimeUpdates)
+            let durationFormatter = DateFormatters.eventDurationFormatter(forCellAtLastPosition: isCellForDynamicTimeUpdates)
             let cell = cell as! DayStartingWakeCell
             cell.typeLabel.text = "Подъем"
-            cell.startTimeLabel.text = eventDateFormatter.string(from: event.startDate)
+            cell.startTimeLabel.text = DateFormatters.eventStartDateFormatter.string(from: event.startDate)
             cell.durationLabel.text = durationFormatter.string(from: eventsStore.duration(of: event))
         }
         private func configureDayFinishingSleepCell(_ cell: UITableViewCell,_ event: Event) -> () {
-            let durationFormatter = eventDurationFormatter(forCellAtLastPosition: false)
+            let durationFormatter = DateFormatters.eventDurationFormatter(forCellAtLastPosition: false)
             let cell = cell as! DayFinishingSleepCell
             cell.typeLabel.text = "Отбой"
-            cell.timeLabel.text = eventDateFormatter.string(from: event.startDate)
+            cell.timeLabel.text = DateFormatters.eventStartDateFormatter.string(from: event.startDate)
             cell.durationLabel.text = durationFormatter.string(from: eventsStore.duration(of: event))
         }
         private func configureDayFillingWakeCell(_ cell: UITableViewCell,_ event: Event) -> () {
             let isCellForDynamicTimeUpdates = (eventsStore.eventForTimeUpdates == event)
-            let durationFormatter = eventDurationFormatter(forCellAtLastPosition: isCellForDynamicTimeUpdates)
+            let durationFormatter = DateFormatters.eventDurationFormatter(forCellAtLastPosition: isCellForDynamicTimeUpdates)
             let cell = cell as! DayFillingWakeCell
-            cell.timeLabel.text = eventDateFormatter.string(from: event.startDate)
+            cell.timeLabel.text = DateFormatters.eventStartDateFormatter.string(from: event.startDate)
             cell.durationLabel.text = durationFormatter.string(from: eventsStore.duration(of: event))
         }
         private func configureDayFillingSleepCell(_ cell: UITableViewCell,_ event: Event) -> () {
             let isCellForDynamicTimeUpdates = (eventsStore.eventForTimeUpdates == event)
-            let durationFormatter = eventDurationFormatter(forCellAtLastPosition: isCellForDynamicTimeUpdates)
+            let durationFormatter = DateFormatters.eventDurationFormatter(forCellAtLastPosition: isCellForDynamicTimeUpdates)
             let cell = cell as! DayFillingSleepCell
             let num = eventsStore.numberOfSleepEventInADay(event)
             cell.typeLabel.text = "Сон номер № \(num)"
-            cell.timeLabel.text = eventDateFormatter.string(from: event.startDate)
+            cell.timeLabel.text = DateFormatters.eventStartDateFormatter.string(from: event.startDate)
             cell.durationLabel.text = durationFormatter.string(from: eventsStore.duration(of: event))
-        }
-        
-        private var eventDateFormatter: DateFormatter {
-           let formatter = DateFormatter()
-            formatter.timeStyle = .medium
-            formatter.dateStyle = .none
-            return formatter
-        }
-        private func eventDurationFormatter(forCellAtLastPosition isLast: Bool) -> DateComponentsFormatter {
-            let formatter = DateComponentsFormatter()
-            formatter.unitsStyle = .short
-            if isLast {
-                formatter.allowedUnits = [.hour, .minute, .second]
-            } else {
-                formatter.allowedUnits = [.hour, .minute]
-            }
-            return formatter
         }
     }
 }

@@ -19,9 +19,9 @@ extension Event {
 
     @NSManaged public var startDate: Date
     @NSManaged public var typeIdentifier: Int16
-    var type: EnventType {
+    var type: EventType {
         get {
-            guard let type = EnventType(rawValue: Int(typeIdentifier)) else {
+            guard let type = EventType(rawValue: Int(typeIdentifier)) else {
                 fatalError("Value used for creating Event type must be 0 or 1")
             }
             return type

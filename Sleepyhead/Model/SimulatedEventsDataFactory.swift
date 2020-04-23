@@ -92,6 +92,6 @@ struct SimulatedEventsDataFactory {
     }
     struct  EventData {
         let startDate: Date
-        let eventType: EnventType
+        let eventType: EventType
     }
 }

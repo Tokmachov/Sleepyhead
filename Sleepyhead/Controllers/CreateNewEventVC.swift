@@ -6,4 +6,8 @@
 //  Copyright © 2020 mac. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class CreateNewEventVC: UIViewController {
+    
+}
