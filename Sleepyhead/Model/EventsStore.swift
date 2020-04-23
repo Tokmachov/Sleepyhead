@@ -48,7 +48,7 @@ struct EventsStore {
             return event.startDate.distance(to: Date())
         }
     }
-    func positionOfeventInADay(_ event: Event) -> PositionOfEventInTheDay {
+    func positionOfeventInADay(_ event: Event) -> PositionOfEventInADay {
         let dayThatHasEvent = observedDays.first { $0.events.contains(event) }!
         switch event {
         case dayThatHasEvent.events.first: return .dayStarting

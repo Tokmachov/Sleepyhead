@@ -9,7 +9,11 @@
 import UIKit
 
 class EventLogVC: UITableViewController {
-    var eventsStore: EventsStore!
+    var eventsStore: EventsStore! {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     private var lastEntryDurationUpdateTimer: Timer?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,10 +36,10 @@ extension EventLogVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let event = eventsStore[indexPath.section, indexPath.row]
         let eventPositionInDay = eventsStore.positionOfeventInADay(event)
-        let id = cellId(for: event.type, atPosition: eventPositionInDay)!
-        let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath)
+        let type = cellType(for: event.type, atPosition: eventPositionInDay)
+        let cell = tableView.dequeueReusableCell(withIdentifier: type.rawValue, for: indexPath)
         let factory = CellConfiguratorFactory(eventStore: eventsStore)
-        let configureFucntion = factory.make(eventType: event.type, eventPosition: eventPositionInDay)!
+        let configureFucntion = factory.make(cellType: type)
         configureFucntion(cell, event)
         return cell
     }
@@ -57,14 +61,19 @@ extension EventLogVC {
             self.tableView.reloadRows(at: [self.indexPathOfCellForTimeUpdates], with: .fade)
         }
     }
-    private func cellId(for eventType: EventType, atPosition position: PositionOfEventInTheDay) -> String? {
-        switch eventType {
-        case .wakeTime where position == .dayStarting: return "DayStartingCell"
-        case .wakeTime where position == .dayFilling: return "DayFillingWakeCell"
-        case .sleepTime where position == .dayFinishing: return "DayFinishingSleepCell"
-        case .sleepTime where position == .dayFilling: return "DayFillingSleepCell"
-        default: return nil
+    private func cellType(for eventType: EventType, atPosition position: PositionOfEventInADay) -> CellType {
+        switch (eventType, position) {
+        case (.wakeTime, .dayStarting): return .dayStartingWakeCell
+        case (.sleepTime, .dayFinishing): return .dayFinishingSleepCell
+        case (.wakeTime, _): return .dayFillingWakeCell
+        case (.sleepTime, _): return .dayFillingSleepCell
         }
+    }
+    enum CellType: String {
+        case dayStartingWakeCell = "DayStartingCell"
+        case dayFillingWakeCell = "DayFillingWakeCell"
+        case dayFillingSleepCell = "DayFillingSleepCell"
+        case dayFinishingSleepCell = "DayFinishingSleepCell"
     }
 }
 
@@ -85,13 +94,12 @@ extension EventLogVC {
         init(eventStore: EventsStore) {
             self.eventsStore = eventStore
         }
-        func make(eventType: EventType, eventPosition: PositionOfEventInTheDay) -> ((UITableViewCell, Event) -> ())? {
-            switch (eventType, eventPosition) {
-            case (.wakeTime, .dayStarting): return configureDayStartingWakeCell(_:_:)
-            case (.wakeTime, .dayFilling): return configureDayFillingWakeCell(_:_:)
-            case (.sleepTime, .dayFinishing):  return configureDayFinishingSleepCell(_:_:)
-            case (.sleepTime, .dayFilling):  return configureDayFillingSleepCell(_:_:)
-            default: return nil
+        func make(cellType: CellType) -> ((UITableViewCell, Event) -> ()) {
+            switch cellType {
+            case .dayStartingWakeCell: return configureDayStartingWakeCell(_:_:)
+            case .dayFillingWakeCell: return configureDayFillingWakeCell(_:_:)
+            case .dayFillingSleepCell:  return configureDayFillingSleepCell(_:_:)
+            case .dayFinishingSleepCell:  return configureDayFinishingSleepCell(_:_:)
             }
         }
         private func configureDayStartingWakeCell(_ cell: UITableViewCell, _ event: Event) -> () {

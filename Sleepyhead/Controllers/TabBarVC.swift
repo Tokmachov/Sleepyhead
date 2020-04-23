@@ -8,18 +8,24 @@
 
 import UIKit
 
-class TabBarVC: UITabBarController {
+class TabBarVC: UITabBarController, EventControlVCDelegate {
     private var eventControlVC: EventControlVC!
     private var eventLogVC: EventLogVC!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVCs()
+        eventControlVC.delegate = self
         let events = getEvents()
         updateEventLogVC(with: events)
         updateEventControlVC(with: events.last!)
         selectedIndex = 0
     }
+    //MARK: EventControlVCDelegate
+    func didCreateNewEvent(_ eventControlVc: EventControlVC) {
+         let events = EventsPersistenceService.fetchAllEvents()
+         updateEventLogVC(with: events)
+     }
 }
 extension TabBarVC {
     private func setupVCs() {
@@ -62,4 +68,8 @@ extension TabBarVC {
         static var eventControlVC = "EventControlVC"
         static var eventLogVC = "EventLogVC"
     }
+}
+
+protocol EventControlVCDelegate: AnyObject {
+    func didCreateNewEvent(_ eventControlVc: EventControlVC)
 }

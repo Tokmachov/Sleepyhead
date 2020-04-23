@@ -15,6 +15,8 @@ class EventControlVC: UIViewController {
             setButtonsAppearence()
         }
     }
+    weak var delegate: EventControlVCDelegate!
+    
     private var durationUpdater: Timer?
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
@@ -33,6 +35,7 @@ class EventControlVC: UIViewController {
     @IBAction func newEventButtonWasPressed() {
         let event = createNewEvent()
         self.event = event
+        delegate.didCreateNewEvent(self)
     }
 }
 

@@ -294,11 +294,11 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BX8-lk-Yaz">
-                                <rect key="frame" x="147.5" y="293.5" width="80" height="80"/>
+                                <rect key="frame" x="112.5" y="258.5" width="150" height="150"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="lvS-rO-Qou"/>
                                     <constraint firstAttribute="width" secondItem="BX8-lk-Yaz" secondAttribute="height" multiplier="1:1" id="s5F-gy-cZu"/>
-                                    <constraint firstAttribute="width" constant="80" id="veg-ng-4Xb"/>
                                 </constraints>
                                 <state key="normal" title="asdasdas">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
